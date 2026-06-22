@@ -28,4 +28,29 @@ process.on('uncaughtException', error => {
     console.error('Uncaught exception:', error);
 });
 
+client.on('disconnect', () => {
+    console.log('Bot disconnected!');
+});
+
+client.on('reconnecting', () => {
+    console.log('Bot reconnecting...');
+});
+
+client.on('error', error => {
+    console.error('Discord client error:', error);
+});
+
+client.on('shardDisconnect', (event, id) => {
+    console.log(`Shard ${id} disconnected`, event);
+});
+
+client.on('shardReconnecting', id => {
+    console.log(`Shard ${id} reconnecting...`);
+});
+
+client.on('shardResume', id => {
+    console.log(`Shard ${id} resumed`);
+});
+
+
 client.login(process.env.DISCORD_TOKEN);
