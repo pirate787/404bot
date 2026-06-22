@@ -45,5 +45,22 @@ client.on('shardResume', id => {
     console.log(`Shard ${id} resumed`);
 });
 
+const client = new Client({
+    intents: [GatewayIntentBits.Guilds]
+});
+
+client.on('error', console.error);
+
+process.on('unhandledRejection', error => {
+    console.error('Unhandled promise rejection:', error);
+});
+
+process.on('uncaughtException', error => {
+    console.error('Uncaught exception:', error);
+});
+
+setInterval(() => {
+    console.log(`Heartbeat: ${new Date().toLocaleString()}`);
+}, 60000);
 
 client.login(process.env.DISCORD_TOKEN);
