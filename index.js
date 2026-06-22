@@ -28,13 +28,6 @@ process.on('uncaughtException', error => {
     console.error('Uncaught exception:', error);
 });
 
-client.on('disconnect', () => {
-    console.log('Bot disconnected!');
-});
-
-client.on('reconnecting', () => {
-    console.log('Bot reconnecting...');
-});
 
 client.on('error', error => {
     console.error('Discord client error:', error);
