@@ -16,8 +16,16 @@ app.listen(process.env.PORT || 3000, () => {
     console.log('Web server started');
 });
 
-client.once('ready', () => {
+client.once('clientReady', () => {
     console.log(`✅ ${client.user.tag} is online!`);
+});
+
+process.on('unhandledRejection', error => {
+    console.error('Unhandled promise rejection:', error);
+});
+
+process.on('uncaughtException', error => {
+    console.error('Uncaught exception:', error);
 });
 
 client.login(process.env.DISCORD_TOKEN);
